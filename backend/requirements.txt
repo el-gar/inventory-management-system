@@ -1,3 +1,6 @@
+#Backend Dependencies (Flask)
+
 Flask
 Flask-SQLAlchemy
 Flask-CORS
+Flask-Login
