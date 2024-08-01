@@ -1,46 +1,148 @@
 /* src/App.css */
+
+/* General Styles */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .App {
-    text-align: center;
-    padding: 20px;
-  }
-  
-  input {
-    margin: 5px;
-    padding: 10px;
-    width: 200px;
-  }
-  
-  button {
-    margin: 5px;
-    padding: 10px 20px;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #218838;
-  }
-  
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  li {
-    background-color: white;
-    margin: 10px 0;
-    padding: 10px;
-    border: 1px solid #ddd;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }  
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+  margin: 0;
+  padding: 0;
+}
+
+/* Container Styles */
+.App {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #2e2e2e;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Heading Styles */
+h1 {
+  font-size: 2.5em;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+h2 {
+  font-size: 1.5em;
+  color: #b0b0b0;
+  margin-bottom: 20px;
+}
+
+/* Form and Input Styles */
+input {
+  margin: 5px;
+  padding: 10px;
+  width: 300px;
+  border: 1px solid #444;
+  border-radius: 4px;
+  background-color: #333;
+  color: #e0e0e0;
+  transition: border-color 0.2s ease-in-out;
+}
+
+input:focus {
+  border-color: #007aff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 122, 255, 0.5);
+}
+
+button {
+  margin: 5px;
+  padding: 10px 20px;
+  background-color: #007aff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+button:hover {
+  background-color: #005bb5;
+}
+
+button:disabled {
+  background-color: #555;
+  cursor: not-allowed;
+}
+
+/* List Styles */
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  background-color: #2e2e2e;
+  margin: 10px 0;
+  padding: 15px;
+  border: 1px solid #444;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+li:hover {
+  background-color: #3e3e3e;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Button Group Styles */
+button.edit-button {
+  background-color: #ff9500;
+}
+
+button.edit-button:hover {
+  background-color: #c76d00;
+}
+
+button.delete-button {
+  background-color: #ff3b30;
+}
+
+button.delete-button:hover {
+  background-color: #c52b24;
+}
+
+/* Footer Styles */
+.footer {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #2e2e2e;
+  border-top: 1px solid #444;
+  text-align: center;
+  font-size: 0.9em;
+  color: #b0b0b0;
+}
+
+/* Login Form Styles */
+.login-form {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #2e2e2e;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.login-form h2 {
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+.login-form input {
+  width: calc(100% - 22px); /* Adjust width to include padding and border */
+  margin: 10px 0;
+}
+
+.login-form button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+}
