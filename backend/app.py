@@ -2,6 +2,8 @@ from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user
+from datetime import datetime, timedelta
+from sqlalchemy import text
 
 app = Flask(__name__)
 app.secret_key = 'supersecretkey'
@@ -66,13 +68,15 @@ class Item(db.Model):
     name = db.Column(db.String(80), nullable=False)
     category = db.Column(db.String(80), nullable=False)
     quantity = db.Column(db.Integer, nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
     def to_dict(self):
         return {
             'id': self.id,
             'name': self.name,
             'category': self.category,
-            'quantity': self.quantity
+            'quantity': self.quantity,
+            'created_at': self.created_at
         }
 
 @app.route('/items', methods=['GET', 'POST'])
@@ -105,6 +109,31 @@ def update_delete_item(id):
         db.session.commit()
         return '', 204
     return jsonify({"message": "Request must be JSON"}), 415
+
+@app.route('/sql/items/category/<string:category>', methods=['GET'])
+@login_required
+def sql_get_items_by_category(category):
+    query = text("SELECT * FROM item WHERE category = :category")
+    result = db.session.execute(query, {'category': category})
+    items = [dict(zip(result.keys(), row)) for row in result]
+    return jsonify(items)
+
+@app.route('/sql/items/recent', methods=['GET'])
+@login_required
+def sql_get_recent_items():
+    thirty_days_ago = datetime.utcnow() - timedelta(days=30)
+    query = text("SELECT * FROM item WHERE created_at >= :date")
+    result = db.session.execute(query, {'date': thirty_days_ago})
+    items = [dict(zip(result.keys(), row)) for row in result]
+    return jsonify(items)
+
+@app.route('/report/items-per-category', methods=['GET'])
+@login_required
+def report_items_per_category():
+    query = text("SELECT category, COUNT(*) as count FROM item GROUP BY category")
+    result = db.session.execute(query)
+    report = [dict(zip(result.keys(), row)) for row in result]
+    return jsonify(report)
 
 if __name__ == '__main__':
     with app.app_context():

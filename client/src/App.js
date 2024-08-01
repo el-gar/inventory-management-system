@@ -80,7 +80,7 @@ function App() {
   return (
     <div className="App">
       <h1>G.I.M.S.: The Government Inventory Management System</h1>
-      <h2>Managing all your needs.</h2>
+      <h2>Managing all your Public Sector Office needs.</h2>
       {isAuthenticated ? (
         <>
           <button onClick={handleLogout}>Logout</button>
